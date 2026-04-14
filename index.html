@@ -250,9 +250,58 @@
       letter-spacing: 1px;
     }
 
+    /* ── ACTION BAR ── */
+    .action-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(10, 22, 40, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid var(--navy3);
+      display: flex;
+      gap: 10px;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      z-index: 100;
+    }
+    .action-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 12px 10px;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .action-btn:active { opacity: 0.75; }
+    .btn-contact {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .btn-pdf {
+      background: var(--navy3);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .action-bar-spacer { height: 72px; }
+
     @media (max-width: 360px) {
       .hours-grid { grid-template-columns: repeat(2, 1fr); }
       .attr-list  { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      .action-bar, .action-bar-spacer { display: none !important; }
+      body { background: #fff; color: #000; }
+      .hero { background: #0a1628 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .hour-card, .attr-item, .about-card, .medical-card { border: 1px solid #ccc !important; background: #f9f9f9 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
   </style>
 </head>
@@ -405,6 +454,19 @@
   </div>
 
   <footer>SHMUEL HAZAN &nbsp;·&nbsp; PILOT RESUME</footer>
+
+  <div class="action-bar-spacer"></div>
+
+  <div class="action-bar">
+    <a class="action-btn btn-contact" href="shmuel-hazan.vcf" download="Shmuel-Hazan.vcf">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Save Contact
+    </a>
+    <button class="action-btn btn-pdf" onclick="window.print()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg>
+      Save as PDF
+    </button>
+  </div>
 
 </body>
 </html>
