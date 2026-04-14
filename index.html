@@ -468,12 +468,12 @@
   <script>
     async function saveAsPDF(btn) {
       const originalHTML = btn.innerHTML;
-      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg> Generating…';
+      btn.innerHTML = 'Generating…';
       btn.disabled = true;
 
-      const bar   = document.querySelector('.action-bar');
+      const bar    = document.querySelector('.action-bar');
       const spacer = document.querySelector('.action-bar-spacer');
-      bar.style.display = 'none';
+      bar.style.display    = 'none';
       spacer.style.display = 'none';
 
       try {
@@ -486,30 +486,27 @@
         });
 
         const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-        const pw = pdf.internal.pageSize.getWidth();
-        const ph = pdf.internal.pageSize.getHeight();
-        const imgH = (canvas.height * pw) / canvas.width;
-        const imgData = canvas.toDataURL('image/jpeg', 0.93);
 
-        let remaining = imgH;
-        let page = 0;
-        while (remaining > 0) {
-          if (page > 0) pdf.addPage();
-          pdf.addImage(imgData, 'JPEG', 0, -(page * ph), pw, imgH);
-          remaining -= ph;
-          page++;
-        }
+        // One custom-size page = exact content dimensions, no cuts, no blanks
+        const mmWidth  = 210;
+        const mmHeight = (canvas.height / canvas.width) * mmWidth;
 
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: [mmWidth, mmHeight]
+        });
+
+        pdf.addImage(canvas.toDataURL('image/jpeg', 0.93), 'JPEG', 0, 0, mmWidth, mmHeight);
         pdf.save('Shmuel-Hazan-Pilot-Resume.pdf');
       } catch (e) {
         console.error(e);
         alert('Could not generate PDF. Please try again.');
       } finally {
-        bar.style.display = '';
+        bar.style.display    = '';
         spacer.style.display = '';
         btn.innerHTML = originalHTML;
-        btn.disabled = false;
+        btn.disabled  = false;
       }
     }
   </script>
