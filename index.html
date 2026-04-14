@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shmuel Hazan — Pilot</title>
+  <meta name="description" content="Shmuel Hazan — Commercial Pilot, CSEL/IR, 345 TT hours, based in South Florida." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0a1628;
+      --navy2:  #0f2040;
+      --navy3:  #16305a;
+      --gold:   #c9a84c;
+      --gold2:  #e6c06a;
+      --white:  #f5f7fa;
+      --muted:  #8fa0b8;
+      --card:   #122038;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, var(--navy2) 0%, var(--navy) 100%);
+      border-bottom: 1px solid var(--navy3);
+      padding: 48px 24px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 340px; height: 340px;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .wings {
+      font-size: 28px;
+      letter-spacing: 6px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 7vw, 38px);
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--white);
+    }
+
+    .hero .title {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 6px;
+    }
+
+    .divider {
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 18px auto;
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 20px;
+      margin-top: 4px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .contact-item a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .contact-item a:hover { color: var(--gold2); }
+    .contact-item .icon { color: var(--gold); font-size: 14px; }
+
+    /* ── SECTIONS ── */
+    .container { max-width: 680px; margin: 0 auto; padding: 0 16px 60px; }
+
+    section { margin-top: 32px; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--navy3), transparent);
+    }
+
+    /* ── HOURS GRID ── */
+    .hours-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .hour-card {
+      background: var(--card);
+      border: 1px solid var(--navy3);
+      border-radius: 10px;
+      padding: 16px 12px;
+      text-align: center;
+    }
+    .hour-card .num {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold2);
+      line-height: 1;
+    }
+    .hour-card .lbl {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── CERT PILLS ── */
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pill {
+      background: var(--card);
+      border: 1px solid var(--navy3);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pill .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ── ABOUT CARD ── */
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--navy3);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 20px;
+      font-size: 14px;
+      color: #b8cce0;
+      line-height: 1.75;
+    }
+
+    /* ── ATTRIBUTES ── */
+    .attr-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .attr-item {
+      background: var(--card);
+      border: 1px solid var(--navy3);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .attr-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .attr-text { font-size: 13px; color: var(--white); font-weight: 500; }
+    .attr-sub  { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    /* ── LANGUAGES ── */
+    .lang-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .lang-pill {
+      background: var(--card);
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 13px;
+      color: var(--gold2);
+      font-weight: 500;
+    }
+
+    /* ── MEDICAL ── */
+    .medical-card {
+      background: var(--card);
+      border: 1px solid #1e4d3a;
+      border-left: 3px solid #3ecf78;
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .medical-icon { font-size: 22px; }
+    .medical-title { font-size: 14px; font-weight: 600; color: #3ecf78; }
+    .medical-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 20px 16px;
+      font-size: 11px;
+      color: var(--navy3);
+      border-top: 1px solid var(--navy3);
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 360px) {
+      .hours-grid { grid-template-columns: repeat(2, 1fr); }
+      .attr-list  { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wings">✈</div>
+    <h1>Shmuel Hazan</h1>
+    <p class="title">Commercial Pilot &nbsp;·&nbsp; ASEL / IR</p>
+    <div class="divider"></div>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <span class="icon">✉</span>
+        <a href="mailto:shmuelhazan@gmail.com">shmuelhazan@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="icon">✆</span>
+        <a href="tel:+17863014637">(786) 301-4637</a>
+      </div>
+      <div class="contact-item">
+        <span class="icon">⌖</span>
+        Bay Harbor Islands, FL
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- FLIGHT HOURS -->
+    <section>
+      <div class="section-label">Flight Hours</div>
+      <div class="hours-grid">
+        <div class="hour-card">
+          <div class="num">345</div>
+          <div class="lbl">Total Time</div>
+        </div>
+        <div class="hour-card">
+          <div class="num">250</div>
+          <div class="lbl">PIC</div>
+        </div>
+        <div class="hour-card">
+          <div class="num">75</div>
+          <div class="lbl">Instrument</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES & RATINGS -->
+    <section>
+      <div class="section-label">Certificates &amp; Ratings</div>
+      <div class="pills">
+        <div class="pill"><span class="dot"></span>Commercial ASEL</div>
+        <div class="pill"><span class="dot"></span>Instrument Rating</div>
+        <div class="pill"><span class="dot"></span>High Performance</div>
+        <div class="pill"><span class="dot"></span>Complex Endorsement</div>
+      </div>
+    </section>
+
+    <!-- MEDICAL -->
+    <section>
+      <div class="section-label">Medical Certificate</div>
+      <div class="medical-card">
+        <div class="medical-icon">🏥</div>
+        <div>
+          <div class="medical-title">FAA 1st Class Medical</div>
+          <div class="medical-sub">Current &amp; Valid</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section>
+      <div class="section-label">About</div>
+      <div class="about-card">
+        Pursuing aviation as a second career after 20 years as a successful entrepreneur.
+        I bring a proven ability to perform under pressure, sharp problem-solving skills,
+        and a calm, professional demeanor. My background as a business owner gives me a
+        deep appreciation for customer service excellence — an asset I carry into every
+        flight operation.
+      </div>
+    </section>
+
+    <!-- KEY ATTRIBUTES -->
+    <section>
+      <div class="section-label">Key Attributes</div>
+      <div class="attr-list">
+        <div class="attr-item">
+          <div class="attr-icon">🎯</div>
+          <div>
+            <div class="attr-text">Composure Under Pressure</div>
+            <div class="attr-sub">20 years of high-stakes decisions</div>
+          </div>
+        </div>
+        <div class="attr-item">
+          <div class="attr-icon">🔧</div>
+          <div>
+            <div class="attr-text">Problem Solving</div>
+            <div class="attr-sub">Entrepreneurial mindset</div>
+          </div>
+        </div>
+        <div class="attr-item">
+          <div class="attr-icon">🤝</div>
+          <div>
+            <div class="attr-text">Customer Service</div>
+            <div class="attr-sub">Passenger-first approach</div>
+          </div>
+        </div>
+        <div class="attr-item">
+          <div class="attr-icon">📋</div>
+          <div>
+            <div class="attr-text">CRM &amp; Leadership</div>
+            <div class="attr-sub">Team coordination</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section>
+      <div class="section-label">Languages</div>
+      <div class="lang-row">
+        <div class="lang-pill">🇺🇸 English</div>
+        <div class="lang-pill">🇮🇱 Hebrew</div>
+        <div class="lang-pill">🇮🇹 Italian</div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>SHMUEL HAZAN &nbsp;·&nbsp; PILOT RESUME</footer>
+
+</body>
+</html>
