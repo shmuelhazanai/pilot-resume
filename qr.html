@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QR Code — Shmuel Hazan Pilot Resume</title>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -111,13 +111,13 @@
   <script>
     const url = 'https://shmuelhazanai.github.io/pilot-resume';
 
-    QRCode.toCanvas(document.createElement('canvas'), url, {
+    const qr = new QRCode(document.getElementById('qrcode'), {
+      text: url,
       width: 220,
-      margin: 2,
-      color: { dark: '#0a1628', light: '#f5f7fa' }
-    }, function (err, canvas) {
-      if (err) { console.error(err); return; }
-      document.getElementById('qrcode').appendChild(canvas);
+      height: 220,
+      colorDark: '#0a1628',
+      colorLight: '#f5f7fa',
+      correctLevel: QRCode.CorrectLevel.H
     });
 
     function downloadQR() {
