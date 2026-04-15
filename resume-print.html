@@ -198,9 +198,9 @@
     <div class="section">
       <div class="section-label">Flight Hours</div>
       <div class="hours-grid">
-        <div class="hour-card"><div class="num">345</div><div class="lbl">Total Time</div></div>
-        <div class="hour-card"><div class="num">250</div><div class="lbl">PIC</div></div>
-        <div class="hour-card"><div class="num">75</div><div class="lbl">Instrument</div></div>
+        <div class="hour-card"><div class="num" id="h-total">—</div><div class="lbl">Total Time</div></div>
+        <div class="hour-card"><div class="num" id="h-pic">—</div><div class="lbl">PIC</div></div>
+        <div class="hour-card"><div class="num" id="h-instrument">—</div><div class="lbl">Instrument</div></div>
       </div>
     </div>
 
@@ -279,6 +279,13 @@
 
   <footer>Shmuel Hazan &nbsp;·&nbsp; Pilot Resume</footer>
 
-  <script>window.onload = function(){ window.print(); }</script>
+  <script>
+    fetch('data.json').then(r => r.json()).then(d => {
+      document.getElementById('h-total').textContent      = d.hours.total;
+      document.getElementById('h-pic').textContent        = d.hours.pic;
+      document.getElementById('h-instrument').textContent = d.hours.instrument;
+      window.print();
+    });
+  </script>
 </body>
 </html>
