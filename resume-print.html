@@ -280,7 +280,7 @@
   <footer>Shmuel Hazan &nbsp;·&nbsp; Pilot Resume</footer>
 
   <script>
-    fetch('data.json').then(r => r.json()).then(d => {
+    fetch('data.json?v=' + Date.now()).then(r => r.json()).then(d => {
       document.getElementById('h-total').textContent      = d.hours.total;
       document.getElementById('h-pic').textContent        = d.hours.pic;
       document.getElementById('h-instrument').textContent = d.hours.instrument;
